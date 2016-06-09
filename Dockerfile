@@ -40,7 +40,7 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >/etc/apt/sou
     locales \
     libblas-dev \
     liblapack-dev \
-    && apt-get install -yqq -t jessie-backports python-requests \
+    && apt-get install -yqq -t jessie-backports python-requests libpq-dev \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
@@ -50,10 +50,12 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >/etc/apt/sou
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
+    && pip install psycopg2 \
     && pip install airflow==$AIRFLOW_VERSION \
     && pip install airflow[celery]==$AIRFLOW_VERSION \
     && pip install airflow[mysql]==$AIRFLOW_VERSION \
     && pip install airflow[hive]==$AIRFLOW_VERSION \
+    && pip install airflow[postgres]==$AIRFLOW_VERSION \
     && apt-get remove --purge -yqq build-essential python-pip python-dev libmysqlclient-dev libkrb5-dev libsasl2-dev libssl-dev libffi-dev \
     && apt-get clean \
     && rm -rf \
