@@ -40,6 +40,8 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >/etc/apt/sou
     locales \
     libblas-dev \
     liblapack-dev \
+    postgresql-client-common \
+    postgresql-client \
     && apt-get install -yqq -t jessie-backports python-requests libpq-dev \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
